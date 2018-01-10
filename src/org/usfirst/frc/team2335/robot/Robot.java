@@ -14,7 +14,7 @@ public class Robot extends TimedRobot
 	//Constants
 	
 	//Ultrasound constants
-	public static int ECHO_PIN = 0, PULSE_PIN = 0; //TODO: set to actual values
+	public static int ECHO_PIN = 0, PULSE_PIN = 1; //TODO: set to actual values
 	
 	//Subsystems
 	public static Drive drive;
