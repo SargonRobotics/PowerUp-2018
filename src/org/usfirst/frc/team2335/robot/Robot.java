@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2335.robot;
 
 import org.usfirst.frc.team2335.robot.subsystems.Drive;
+import org.usfirst.frc.team2335.robot.subsystems.Ultrasound;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -12,8 +13,12 @@ public class Robot extends TimedRobot
 {
 	//Constants
 	
+	//Ultrasound constants
+	public static int ECHO_PIN = 0, PULSE_PIN = 0; //TODO: set to actual values
+	
 	//Subsystems
 	public static Drive drive;
+	public static Ultrasound ultrasound;
 	public static OperatorInterface oi;
 
 	//For choosing autonomous command
@@ -25,6 +30,7 @@ public class Robot extends TimedRobot
 	public void robotInit()
 	{
 		drive = new Drive();
+		ultrasound = new Ultrasound();
 		oi = new OperatorInterface(); //Initialize this last or you break everything
 		
 		//Adds auto commands
@@ -79,6 +85,10 @@ public class Robot extends TimedRobot
 	@Override
 	public void teleopPeriodic()
 	{
+		//Debug distance
+		//TODO: test up to 54 inches
+		System.out.println(ultrasound.getDistance());
+		
 		Scheduler.getInstance().run();
 	}
 
