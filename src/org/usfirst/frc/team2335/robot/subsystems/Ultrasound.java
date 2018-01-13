@@ -17,7 +17,7 @@ public class Ultrasound extends Subsystem
 	
 	public double getDistance()
 	{
-		return sensor.getRangeMM();
+		return sensor.getRangeInches() / 12;
 	}
 	
     public void initDefaultCommand()
