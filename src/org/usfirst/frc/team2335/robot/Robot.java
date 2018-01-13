@@ -23,6 +23,10 @@ public class Robot extends TimedRobot
 	//Subsystems
 	public static Drive drive;
 	public static OperatorInterface oi;
+	
+	//Controller values
+	private double yVal, xVal, zVal;
+	private double lTrigger, rTrigger;
 
 	//For choosing autonomous command
 	Command autonomousCommand;
@@ -87,7 +91,15 @@ public class Robot extends TimedRobot
 	@Override
 	public void teleopPeriodic()
 	{
-		//drive.drive(y, x, z);
+		yVal = oi.getAxis(Y_AXIS, 1.0);
+		xVal = oi.getAxis(X_AXIS, 1.0);
+		
+		lTrigger = oi.getAxis(Z_AXIS_NEG, 1.0);
+		rTrigger = oi.getAxis(Z_AXIS_POS, 1.0);
+		
+		zVal = (rTrigger > 0) ? rTrigger : (1 - lTrigger); 
+		
+		drive.drive(yVal, xVal, zVal);
 		
 		Scheduler.getInstance().run();
 	}
