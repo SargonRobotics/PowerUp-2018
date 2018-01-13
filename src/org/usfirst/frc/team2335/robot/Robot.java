@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot
 {
 	//Constants
+	//Deadzone
+	public static final double DEADZONE = 0.15;
 	
 	//Ultrasound constants
 	public static int ECHO_PIN = 0, PULSE_PIN = 1; //TODO: set to actual values
