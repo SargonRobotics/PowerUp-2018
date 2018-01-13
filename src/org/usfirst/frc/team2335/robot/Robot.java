@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot
 {
 	//Constants
+	//Deadzone
+	public static final double DEADZONE = 0.15;
 	
 	//Motor controller constants
 	public static final int FRONT_LEFT_MOTOR = 0, BACK_LEFT_MOTOR = 1, FRONT_RIGHT_MOTOR = 2, BACK_RIGHT_MOTOR = 3;
