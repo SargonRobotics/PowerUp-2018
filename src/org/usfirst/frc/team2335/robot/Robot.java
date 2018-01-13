@@ -12,6 +12,12 @@ public class Robot extends TimedRobot
 {
 	//Constants
 	
+	//Motor controller constants
+	public static final int FRONT_LEFT_MOTOR = 0, BACK_LEFT_MOTOR = 1, FRONT_RIGHT_MOTOR = 2, BACK_RIGHT_MOTOR = 3;
+	
+	//Controller axes
+	public static final int X_AXIS = 0, Y_AXIS = 1, Z_AXIS_POS = 3, Z_AXIS_NEG = 2;
+	
 	//Subsystems
 	public static Drive drive;
 	public static OperatorInterface oi;
@@ -79,6 +85,8 @@ public class Robot extends TimedRobot
 	@Override
 	public void teleopPeriodic()
 	{
+		//drive.drive(y, x, z);
+		
 		Scheduler.getInstance().run();
 	}
 
