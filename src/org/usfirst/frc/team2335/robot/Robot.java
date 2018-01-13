@@ -12,16 +12,27 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot
 {
 	//Constants
+	
 	//Deadzone
 	public static final double DEADZONE = 0.15;
 	
 	//Ultrasound constants
 	public static int ECHO_PIN = 0, PULSE_PIN = 1; //TODO: set to actual values
+
+	//Motor controller constants
+	public static final int FRONT_LEFT_MOTOR = 0, BACK_LEFT_MOTOR = 1, FRONT_RIGHT_MOTOR = 2, BACK_RIGHT_MOTOR = 3;
 	
+	//Controller axes
+	public static final int X_AXIS = 0, Y_AXIS = 1, Z_AXIS_POS = 3, Z_AXIS_NEG = 2;
+
 	//Subsystems
 	public static Drive drive;
 	public static Ultrasound ultrasound;
 	public static OperatorInterface oi;
+	
+	//Controller values
+	private double yVal, xVal, zVal;
+	private double lTrigger, rTrigger;
 
 	//For choosing autonomous command
 	Command autonomousCommand;
@@ -88,8 +99,17 @@ public class Robot extends TimedRobot
 	public void teleopPeriodic()
 	{
 		//Debug distance
-		//TODO: test up to 54 inches
 		System.out.println(ultrasound.getDistance());
+
+		yVal = oi.getAxis(Y_AXIS, 1.0);
+		xVal = oi.getAxis(X_AXIS, 1.0);
+		
+		lTrigger = oi.getAxis(Z_AXIS_NEG, 1.0);
+		rTrigger = oi.getAxis(Z_AXIS_POS, 1.0);
+		
+		zVal = (rTrigger > 0) ? rTrigger : (1 - lTrigger); 
+		
+		drive.drive(yVal, xVal, zVal);
 		
 		Scheduler.getInstance().run();
 	}
