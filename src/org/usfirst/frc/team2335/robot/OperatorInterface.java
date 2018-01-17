@@ -24,5 +24,5 @@ public class OperatorInterface
 		
 		//Multiplies the controller value by the slope made from (y2 - y1) / (x2 - x1)
 		return ((max - 0) / ((1 - Robot.DEADZONE) - 0) * (amount - 0));
-}
+	}
 }

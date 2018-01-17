@@ -4,29 +4,28 @@ import org.usfirst.frc.team2335.robot.Robot;
 
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 public class Drive extends Subsystem
 {
-	Victor frontLeft, backLeft, frontRight, backRight;
+	Victor leftMotor, rightMotor;
 	
-	MecanumDrive drive;
-	
+	DifferentialDrive drive;
+		
 	public Drive()
 	{
 		//Motor controller definitions
-		frontLeft = new Victor(Robot.FRONT_LEFT_MOTOR);
-		backLeft = new Victor(Robot.BACK_LEFT_MOTOR);
-		frontRight = new Victor(Robot.FRONT_RIGHT_MOTOR);
-		backRight = new Victor(Robot.BACK_RIGHT_MOTOR);
+		leftMotor = new Victor(Robot.LEFT_MOTOR);
+		rightMotor = new Victor(Robot.RIGHT_MOTOR);
+	
 		
 		//Drive controller definition
-		drive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
+		drive = new DifferentialDrive(leftMotor, rightMotor);
 	}
 	
-	public void drive(double y, double x, double z)
-	{
-		drive.driveCartesian(y, x, z);
+	public void drive(double moveVal, double rotateVal)
+	{			
+		drive.arcadeDrive(moveVal, rotateVal);
 	}
 	
     public void initDefaultCommand()
