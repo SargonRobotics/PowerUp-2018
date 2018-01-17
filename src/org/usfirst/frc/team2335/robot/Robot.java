@@ -14,6 +14,10 @@ public class Robot extends TimedRobot
 	//Deadzone
 	public static final double DEADZONE = 0.15;
 	
+	//Encoder ports
+	//TODO: Sets these to real things
+	public static final int ENCODER_A = 0, ENCODER_B = 1;
+	
 	//Subsystems
 	public static Drive drive;
 	public static OperatorInterface oi;
