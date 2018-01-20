@@ -14,9 +14,18 @@ public class Robot extends TimedRobot
 	//Deadzone
 	public static final double DEADZONE = 0.15;
 	
+	//Motor controller constants
+	public static final int LEFT_MOTOR = 0, RIGHT_MOTOR = 1;
+	
+	//Controller axes
+	public static final int X_AXIS = 0, Y_AXIS = 1;
+	
 	//Subsystems
 	public static Drive drive;
 	public static OperatorInterface oi;
+	
+	//Controller values
+	private double yVal, xVal;
 
 	//For choosing autonomous command
 	Command autonomousCommand;
@@ -81,6 +90,11 @@ public class Robot extends TimedRobot
 	@Override
 	public void teleopPeriodic()
 	{
+		yVal = oi.getAxis(Y_AXIS, 1);
+		xVal = oi.getAxis(X_AXIS, 1);
+			
+		drive.drive(yVal, -xVal);
+						
 		Scheduler.getInstance().run();
 	}
 
