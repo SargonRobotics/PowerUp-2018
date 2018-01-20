@@ -90,10 +90,10 @@ public class Robot extends TimedRobot
 	@Override
 	public void teleopPeriodic()
 	{
-		yVal = oi.getAxis(Y_AXIS, 0.4);
-		xVal = oi.getAxis(X_AXIS, 0.4);
+		yVal = oi.getAxis(Y_AXIS, 1);
+		xVal = oi.getAxis(X_AXIS, 1);
 			
-		drive.drive(yVal, xVal);
+		drive.drive(yVal, -xVal);
 						
 		Scheduler.getInstance().run();
 	}
