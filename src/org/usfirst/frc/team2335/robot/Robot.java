@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2335.robot;
 
 import org.usfirst.frc.team2335.robot.subsystems.Drive;
+import org.usfirst.frc.team2335.robot.subsystems.Ultrasound;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -11,10 +12,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot
 {
 	/*** Constants ***/
-	
+
 	//Deadzone
 	public static final double DEADZONE = 0.15;
 	
+	//Ultrasound constants
+	public static int ULTRASOUND_PIN = 0; //TODO: set to actual values
 
 	//Motor controller constants
 	public static final int LEFT_MOTOR = 0, RIGHT_MOTOR = 1;
@@ -25,11 +28,12 @@ public class Robot extends TimedRobot
 	//Encoder ports
 	//TODO: Sets these to real things
 	public static final int ENCODER_A = 0, ENCODER_B = 1;
-	
+
 	//Subsystems
 	public static Drive drive;
+	public static Ultrasound ultrasound;
 	public static OperatorInterface oi;
-	
+
 	//Controller values
 	private double yVal, xVal;
 
@@ -42,6 +46,7 @@ public class Robot extends TimedRobot
 	public void robotInit()
 	{
 		drive = new Drive();
+		ultrasound = new Ultrasound();
 		oi = new OperatorInterface(); //Initialize this last or you break everything
 		
 		//Adds auto commands
@@ -100,7 +105,9 @@ public class Robot extends TimedRobot
 		xVal = oi.getAxis(X_AXIS, 1);
 			
 		drive.drive(yVal, -xVal);
-						
+	
+		System.out.println(ultrasound.getDistance());
+		
 		Scheduler.getInstance().run();
 	}
 
