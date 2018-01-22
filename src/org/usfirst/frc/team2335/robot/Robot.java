@@ -1,7 +1,8 @@
 package org.usfirst.frc.team2335.robot;
 
 import org.usfirst.frc.team2335.robot.subsystems.Drive;
-import org.usfirst.frc.team2335.robot.subsystems.Ultrasound;
+import org.usfirst.frc.team2335.robot.subsystems.EncoderPID;
+import org.usfirst.frc.team2335.robot.subsystems.UltrasoundPID;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -30,8 +31,10 @@ public class Robot extends TimedRobot
 	public static final int ENCODER_A = 0, ENCODER_B = 1;
 
 	//Subsystems
+	public static EncoderPID encoderPID;
 	public static Drive drive;
-	public static Ultrasound ultrasound;
+	public static UltrasoundPID ultrasoundPID;
+	
 	public static OperatorInterface oi;
 
 	//Controller values
@@ -45,8 +48,10 @@ public class Robot extends TimedRobot
 	@Override
 	public void robotInit()
 	{
+		encoderPID = new EncoderPID();
 		drive = new Drive();
-		ultrasound = new Ultrasound();
+		ultrasoundPID = new UltrasoundPID();
+		
 		oi = new OperatorInterface(); //Initialize this last or you break everything
 		
 		//Adds auto commands
@@ -104,10 +109,7 @@ public class Robot extends TimedRobot
 		yVal = oi.getAxis(Y_AXIS, 1);
 		xVal = oi.getAxis(X_AXIS, 1);
 			
-		drive.drive(yVal, -xVal);
-	
-		System.out.println(ultrasound.getDistance());
-		
+		drive.drive(yVal, -xVal);		
 		Scheduler.getInstance().run();
 	}
 
