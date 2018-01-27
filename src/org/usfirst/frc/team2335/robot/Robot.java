@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2335.robot;
 
+import org.usfirst.frc.team2335.robot.commands.groups.AutoDriveCenter;
 import org.usfirst.frc.team2335.robot.commands.groups.AutoDriveSide;
 import org.usfirst.frc.team2335.robot.subsystems.Drive;
 import org.usfirst.frc.team2335.robot.subsystems.EncoderPID;
@@ -61,6 +62,7 @@ public class Robot extends TimedRobot
 		//Adds auto commands
 		chooser.addDefault("Left Side Auto", new AutoDriveSide('L'));
 		chooser.addObject("Right Side Auto", new AutoDriveSide('R'));
+		chooser.addObject("Center Auto", new AutoDriveCenter());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 

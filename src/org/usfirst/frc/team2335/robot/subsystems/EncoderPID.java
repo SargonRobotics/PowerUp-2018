@@ -17,6 +17,8 @@ public class EncoderPID extends PIDSubsystem
 	
 	private final int[] encoderCounts = new int[3];
 	
+	private final int encoderCenter;
+	
     public EncoderPID()
     {
     	super("Cim Encoder", (speed / error), 0.0, 0.0);
@@ -29,6 +31,8 @@ public class EncoderPID extends PIDSubsystem
     	encoderCounts[0] = 100;
     	encoderCounts[1] = 200;
     	encoderCounts[2] = 300;
+    	
+    	encoderCenter = 100;
     }
     
     public void setEncoderCount(char robotSide)
@@ -42,6 +46,9 @@ public class EncoderPID extends PIDSubsystem
     		}
     	}
     	
+    	if(robotSide == 'C') {
+    		setSetpoint(encoderCenter);
+    	}
     	DriverStation.reportError("You're fucked", true);
     	setSetpoint(encoderCounts[0]);
     }

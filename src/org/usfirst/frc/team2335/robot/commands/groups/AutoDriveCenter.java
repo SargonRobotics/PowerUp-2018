@@ -1,6 +1,9 @@
 package org.usfirst.frc.team2335.robot.commands.groups;
 
+import org.usfirst.frc.team2335.robot.commands.autonomous.DriveForward;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -8,8 +11,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoDriveCenter extends CommandGroup {
 
     public AutoDriveCenter() {
-    	
-    	
+    	addSequential(new WaitCommand(5));
+    	addSequential(new DriveForward('C'));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
