@@ -28,6 +28,11 @@ public class Drive extends Subsystem
 		drive.arcadeDrive(moveVal, rotateVal);
 	}
 	
+	public void stop()
+	{
+		drive.arcadeDrive(0,0);
+	}
+	
     public void initDefaultCommand()
     {
      

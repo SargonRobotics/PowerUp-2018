@@ -34,7 +34,15 @@ public class UltrasoundPID extends PIDSubsystem
     {
     	
     }
-
+    
+    public double getDistance() {
+    	return returnPIDInput();
+    }
+    
+    /*
+     * Returns distance to accuracy of 1.2 inches
+     * 
+     */
     protected double returnPIDInput()
     {
     	double currentUltraVal = Math.round(sensor.getAverageVoltage() * scaleFactor * 10);

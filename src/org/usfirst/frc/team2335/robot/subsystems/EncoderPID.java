@@ -38,12 +38,15 @@ public class EncoderPID extends PIDSubsystem
     		if(alliancePlacements.charAt(i) == robotSide)
     		{
     			setSetpoint(encoderCounts[i]);
+    			break;
     		}
     	}
     	
     	DriverStation.reportError("You're fucked", true);
     	setSetpoint(encoderCounts[0]);
     }
+    
+    
     
     public void enable()
     {

@@ -1,7 +1,9 @@
 package org.usfirst.frc.team2335.robot;
 
+import org.usfirst.frc.team2335.robot.commands.groups.AutoDriveSide;
 import org.usfirst.frc.team2335.robot.subsystems.Drive;
 import org.usfirst.frc.team2335.robot.subsystems.EncoderPID;
+import org.usfirst.frc.team2335.robot.subsystems.GyroPID;
 import org.usfirst.frc.team2335.robot.subsystems.UltrasoundPID;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -34,6 +36,7 @@ public class Robot extends TimedRobot
 	public static EncoderPID encoderPID;
 	public static Drive drive;
 	public static UltrasoundPID ultrasoundPID;
+	public static GyroPID gyroPID;
 	
 	public static OperatorInterface oi;
 
@@ -51,12 +54,13 @@ public class Robot extends TimedRobot
 		encoderPID = new EncoderPID();
 		drive = new Drive();
 		ultrasoundPID = new UltrasoundPID();
+		gyroPID = new GyroPID();
 		
 		oi = new OperatorInterface(); //Initialize this last or you break everything
 		
 		//Adds auto commands
-		//chooser.addDefault("Default Auto", new ExampleCommand());
-		//chooser.addObject("My Auto", new MyAutoCommand());
+		chooser.addDefault("Left Side Auto", new AutoDriveSide('L'));
+		chooser.addObject("Right Side Auto", new AutoDriveSide('R'));
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
