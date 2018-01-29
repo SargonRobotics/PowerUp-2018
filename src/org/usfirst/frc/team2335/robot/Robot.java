@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2335.robot;
 
 import org.usfirst.frc.team2335.robot.subsystems.Drive;
+import org.usfirst.frc.team2335.robot.subsystems.Vaccuum;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -15,13 +16,20 @@ public class Robot extends TimedRobot
 	public static final double DEADZONE = 0.15;
 	
 	//Motor controller constants
-	public static final int LEFT_MOTOR = 0, RIGHT_MOTOR = 1;
+	public static final int LEFT_MOTOR = 0, RIGHT_MOTOR = 1, VACCUUM_MOTOR = 2;
+	
+	//Sensor ports
+	public static final int RELEASE_SERVO = 0;
 	
 	//Controller axes
 	public static final int X_AXIS = 0, Y_AXIS = 1;
 	
+	//Controller buttons
+	public static final int VACCUUM_BUTTON = 1, RELEASE_BUTTON = 2;
+	
 	//Subsystems
 	public static Drive drive;
+	public static Vaccuum vaccuum;
 	public static OperatorInterface oi;
 	
 	//Controller values
@@ -36,6 +44,7 @@ public class Robot extends TimedRobot
 	public void robotInit()
 	{
 		drive = new Drive();
+		vaccuum = new Vaccuum();
 		oi = new OperatorInterface(); //Initialize this last or you break everything
 		
 		//Adds auto commands

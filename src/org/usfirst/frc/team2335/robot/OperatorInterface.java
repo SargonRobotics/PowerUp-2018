@@ -1,14 +1,25 @@
 package org.usfirst.frc.team2335.robot;
 
+import org.usfirst.frc.team2335.robot.commands.QuickRelease;
+import org.usfirst.frc.team2335.robot.commands.ToggleVaccuum;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OperatorInterface
 {
 	Joystick xbox;
+	JoystickButton toggleVaccuum, quickRelease;
 	
 	public OperatorInterface()
 	{
 		xbox = new Joystick(0);
+		
+		toggleVaccuum = new JoystickButton(xbox, Robot.VACCUUM_BUTTON);
+		quickRelease = new JoystickButton(xbox, Robot.RELEASE_BUTTON);
+		
+		toggleVaccuum.toggleWhenPressed(new ToggleVaccuum());
+		quickRelease.whenPressed(new QuickRelease());
 	}
 	
 	public double getAxis(int axis, double max)
