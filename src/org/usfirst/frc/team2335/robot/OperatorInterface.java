@@ -13,11 +13,14 @@ public class OperatorInterface
 	
 	public OperatorInterface()
 	{
+		//Joystick definition
 		xbox = new Joystick(0);
 		
+		//JoystickButton definitions
 		toggleVaccuum = new JoystickButton(xbox, Robot.VACCUUM_BUTTON);
 		quickRelease = new JoystickButton(xbox, Robot.RELEASE_BUTTON);
 		
+		//Linking buttons to commands
 		toggleVaccuum.toggleWhenPressed(new ToggleVaccuum());
 		quickRelease.whenPressed(new QuickRelease());
 	}

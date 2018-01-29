@@ -29,11 +29,13 @@ public class Vaccuum extends Subsystem
 	
 	public void closeValve()
 	{
+		//TODO: Find appropriate angle
 		quickRelease.set(180);
 	}
 	
 	public void releaseValve()
 	{
+		//TODO: Find appropriate angle
 		quickRelease.set(140);
 	}
 	

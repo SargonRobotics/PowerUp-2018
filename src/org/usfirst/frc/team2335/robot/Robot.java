@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot
 {
-	//Constants
+	/*** Constants ***/
+	
 	//Deadzone
 	public static final double DEADZONE = 0.15;
 	
