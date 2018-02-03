@@ -1,14 +1,31 @@
 package org.usfirst.frc.team2335.robot;
 
+import org.usfirst.frc.team2335.robot.commands.teleop.Climb;
+import org.usfirst.frc.team2335.robot.commands.teleop.MoveHook;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OperatorInterface
 {
 	Joystick xbox;
+	JoystickButton climbButton, hookUp, hookDown;
 	
 	public OperatorInterface()
 	{
 		xbox = new Joystick(0);
+		
+		climbButton = new JoystickButton(xbox, Robot.CLIMB_BUTTON);
+		hookUp = new JoystickButton(xbox, Robot.HOOK_UP_BUTTON);
+		hookDown = new JoystickButton(xbox, Robot.HOOK_DOWN_BUTTON);
+		
+		
+		//Commands
+		
+		climbButton.whileHeld(new Climb(1.0));
+		
+		hookUp.whileHeld(new MoveHook(1.0));
+		hookDown.whileHeld(new MoveHook(-1.0));
 	}
 	
 	public double getAxis(int axis, double max)

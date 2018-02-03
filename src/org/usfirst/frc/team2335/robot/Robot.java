@@ -2,6 +2,7 @@ package org.usfirst.frc.team2335.robot;
 
 import org.usfirst.frc.team2335.robot.commands.groups.AutoDriveCenter;
 import org.usfirst.frc.team2335.robot.commands.groups.AutoDriveSide;
+import org.usfirst.frc.team2335.robot.subsystems.Climber;
 import org.usfirst.frc.team2335.robot.subsystems.Drive;
 import org.usfirst.frc.team2335.robot.subsystems.EncoderPID;
 import org.usfirst.frc.team2335.robot.subsystems.GyroPID;
@@ -23,8 +24,11 @@ public class Robot extends TimedRobot
 	//Ultrasound constants
 	public static int ULTRASOUND_PIN = 0; //TODO: set to actual values
 
+	//Controller ports
+	public static final int CLIMB_BUTTON = 0, HOOK_UP_BUTTON = 1, HOOK_DOWN_BUTTON = 2;
+	
 	//Motor controller constants
-	public static final int LEFT_MOTOR = 0, RIGHT_MOTOR = 1;
+	public static final int LEFT_MOTOR = 0, RIGHT_MOTOR = 1, HOOK_MOTOR = 2, CLIMB_MOTOR = 3;
 	
 	//Controller axes
 	public static final int X_AXIS = 0, Y_AXIS = 1;
@@ -38,6 +42,7 @@ public class Robot extends TimedRobot
 	public static Drive drive;
 	public static UltrasoundPID ultrasoundPID;
 	public static GyroPID gyroPID;
+	public static Climber climber;
 	
 	public static OperatorInterface oi;
 
@@ -56,6 +61,7 @@ public class Robot extends TimedRobot
 		drive = new Drive();
 		ultrasoundPID = new UltrasoundPID();
 		gyroPID = new GyroPID();
+		climber = new Climber();
 		
 		oi = new OperatorInterface(); //Initialize this last or you break everything
 		
