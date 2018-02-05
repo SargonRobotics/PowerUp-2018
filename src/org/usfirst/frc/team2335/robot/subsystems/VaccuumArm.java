@@ -2,14 +2,21 @@ package org.usfirst.frc.team2335.robot.subsystems;
 
 import org.usfirst.frc.team2335.robot.Robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class VaccuumArm extends Subsystem
 {
+	//Vaccuum control
 	Talon vaccuumMotor;
 	Servo quickRelease;
+	
+	//Pneumatics control
+	Compressor airCompressor;
+	
+	//TODO: Add solenoids
 	
 	public VaccuumArm()
 	{
