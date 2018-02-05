@@ -4,34 +4,34 @@ import org.usfirst.frc.team2335.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
-public class MoveHook extends Command {
-
-	double speed = 0.0;
-    public MoveHook(double speed) {
+public class MoveHook extends Command
+{
+    public MoveHook()
+    {
         requires(Robot.climber);
-        this.speed = speed;
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    protected void initialize()
+    {
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	Robot.climber.moveHook(this.speed);
+    protected void execute()
+    {
+    	Robot.climber.moveHook();
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    protected boolean isFinished()
+    {
         return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.climber.moveHook(0);
+    	Robot.climber.stopHook();
     }
 
     // Called when another command which requires one or more of the same

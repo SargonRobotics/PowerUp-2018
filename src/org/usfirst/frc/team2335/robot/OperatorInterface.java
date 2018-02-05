@@ -22,10 +22,10 @@ public class OperatorInterface
 		
 		//Commands
 		
-		climbButton.whileHeld(new Climb(1.0));
+		climbButton.whileHeld(new Climb());
 		
-		hookUp.whileHeld(new MoveHook(1.0));
-		hookDown.whileHeld(new MoveHook(-1.0));
+		hookUp.whileHeld(new MoveHook());
+		hookDown.whileHeld(new MoveHook());
 	}
 	
 	public double getAxis(int axis, double max)
