@@ -5,9 +5,6 @@ import org.usfirst.frc.team2335.robot.Robot;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
 public class Climber extends Subsystem
 {	
 	Victor hookMotor, climbMotor;
@@ -18,9 +15,9 @@ public class Climber extends Subsystem
 		climbMotor = new Victor(Robot.CLIMB_MOTOR);
 	}
     
-	public void moveHook()
+	public void moveHook(double speed)
 	{
-		hookMotor.set(1);
+		hookMotor.set(speed);
 	}
 	
 	public void stopHook()

@@ -6,8 +6,12 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class MoveHook extends Command
 {
-    public MoveHook()
+	final double absoluteSpeed = 1.0;
+	double speed = 0;
+	
+    public MoveHook(boolean movingUp)
     {
+    	this.speed = movingUp ? absoluteSpeed : absoluteSpeed * -1;
         requires(Robot.climber);
     }
 
@@ -20,7 +24,7 @@ public class MoveHook extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute()
     {
-    	Robot.climber.moveHook();
+    	Robot.climber.moveHook(this.speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

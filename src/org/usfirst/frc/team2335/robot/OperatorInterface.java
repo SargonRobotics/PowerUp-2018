@@ -24,8 +24,8 @@ public class OperatorInterface
 		
 		climbButton.whileHeld(new Climb());
 		
-		hookUp.whileHeld(new MoveHook());
-		hookDown.whileHeld(new MoveHook());
+		hookUp.whileHeld(new MoveHook(true));
+		hookDown.whileHeld(new MoveHook(false));
 	}
 	
 	public double getAxis(int axis, double max)
