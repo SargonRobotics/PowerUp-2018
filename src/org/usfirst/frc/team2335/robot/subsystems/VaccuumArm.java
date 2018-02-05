@@ -6,12 +6,12 @@ import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Vaccuum extends Subsystem
+public class VaccuumArm extends Subsystem
 {
 	Talon vaccuumMotor;
 	Servo quickRelease;
 	
-	public Vaccuum()
+	public VaccuumArm()
 	{
 		vaccuumMotor = new Talon(Robot.VACCUUM_MOTOR);
 		quickRelease = new Servo(Robot.RELEASE_SERVO);

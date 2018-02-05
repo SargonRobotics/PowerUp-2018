@@ -8,7 +8,7 @@ public class ToggleVaccuum extends Command
 {
     public ToggleVaccuum()
     {
-        requires(Robot.vaccuum);
+        requires(Robot.vaccuumArm);
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +20,7 @@ public class ToggleVaccuum extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute()
     {
-    	Robot.vaccuum.startVaccuum();
+    	Robot.vaccuumArm.startVaccuum();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -32,7 +32,7 @@ public class ToggleVaccuum extends Command
     // Called once after isFinished returns true
     protected void end()
     {
-    	Robot.vaccuum.stopVaccuum();
+    	Robot.vaccuumArm.stopVaccuum();
     }
 
     // Called when another command which requires one or more of the same
