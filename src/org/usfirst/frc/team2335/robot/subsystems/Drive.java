@@ -9,22 +9,23 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 public class Drive extends Subsystem
 {
 	Victor leftMotor, rightMotor;
-	
 	DifferentialDrive drive;
+	
+	//TODO: Add encoders
 		
 	public Drive()
 	{
 		//Motor controller definitions
 		leftMotor = new Victor(Robot.LEFT_MOTOR);
 		rightMotor = new Victor(Robot.RIGHT_MOTOR);
-	
 		
 		//Drive controller definition
 		drive = new DifferentialDrive(leftMotor, rightMotor);
 	}
 	
 	public void drive(double moveVal, double rotateVal)
-	{			
+	{		
+		//Function that drives the robot
 		drive.arcadeDrive(moveVal, rotateVal);
 	}
 	
