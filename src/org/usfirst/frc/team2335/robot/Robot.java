@@ -15,24 +15,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot
 {
-	/*** Constants ***/
-
-	//Deadzone
-	public static final double DEADZONE = 0.15;
-	
-	//Ultrasound constants
-	public static int ULTRASOUND_PIN = 0; //TODO: set to actual values
-
-	//Motor controller constants
-	public static final int LEFT_MOTOR = 0, RIGHT_MOTOR = 1;
-	
-	//Controller axes
-	public static final int X_AXIS = 0, Y_AXIS = 1;
-
-	//Encoder ports
-	//TODO: Sets these to real things
-	public static final int ENCODER_L_A = 0, ENCODER_L_B = 1, ENCODER_R_A = 2, ENCODER_R_B = 3;
-
 	//Subsystems
 	public static EncoderPID encoderPID;
 	public static Drive drive;
@@ -112,8 +94,8 @@ public class Robot extends TimedRobot
 	@Override
 	public void teleopPeriodic()
 	{
-		yVal = oi.getAxis(Y_AXIS, 1);
-		xVal = oi.getAxis(X_AXIS, 1);
+		yVal = oi.getAxis(RobotMap.Controller.Axes.xDrive, 1);
+		xVal = oi.getAxis(RobotMap.Controller.Axes.yDrive, 1);
 			
 		drive.drive(yVal, -xVal);		
 		Scheduler.getInstance().run();
