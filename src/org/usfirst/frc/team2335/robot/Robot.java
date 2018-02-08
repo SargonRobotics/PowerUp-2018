@@ -11,28 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot
 {
-	/*** Constants ***/
-	
-	//Deadzone
-	public static final double DEADZONE = 0.15;
-	
-	//Motor controller constants
-	public static final int LEFT_MOTOR = 0, RIGHT_MOTOR = 1, VACCUUM_MOTOR = 2;
-	
-	//Sensor ports
-	public static final int RELEASE_SERVO = 9;
-	
-	//Controller axes
-	public static final int X_AXIS = 0, Y_AXIS = 1;
-	
-	//Controller buttons
-	public static final int VACCUUM_BUTTON = 1, RELEASE_BUTTON = 2;
-	
-	//Solenoid ports
-	public static final int LEFT_LAUNCH = 0, RIGHT_LAUNCH = 1, LOWER_AIM_EXTEND = 2, LOWER_AIM_RETRACT = 3,
-			UPPER_AIM_EXTEND = 4, UPPER_AIM_RETRACT = 5;
-	
-	/*** Subsystems ***/
+	//Subsystems
 	public static Drive drive;
 	public static VaccuumArm vaccuumArm;
 	public static OperatorInterface oi;
@@ -105,8 +84,8 @@ public class Robot extends TimedRobot
 	public void teleopPeriodic()
 	{
 		//Gets axis values from the controller
-		yVal = oi.getAxis(Y_AXIS, 1);
-		xVal = oi.getAxis(X_AXIS, 1);
+		yVal = oi.getAxis(RobotMap.Controller.Axes.xDrive, 1);
+		xVal = oi.getAxis(RobotMap.Controller.Axes.yDrive, 1);
 			
 		//Drives robot (woah didn't know that one)
 		drive.drive(yVal, -xVal);

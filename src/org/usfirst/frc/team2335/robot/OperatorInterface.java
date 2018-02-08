@@ -23,8 +23,8 @@ public class OperatorInterface
 		xbox = new Joystick(0);
 		
 		//JoystickButton definitions
-		toggleVaccuum = new JoystickButton(xbox, Robot.VACCUUM_BUTTON);
-		quickRelease = new JoystickButton(xbox, Robot.RELEASE_BUTTON);
+		toggleVaccuum = new JoystickButton(xbox, RobotMap.Controller.Buttons.toggleValve);
+		quickRelease = new JoystickButton(xbox, RobotMap.Controller.Buttons.vaccuumToggle);
 		
 		//TODO: Give these button constants
 		pushCubeButton = new JoystickButton(xbox, 3);
@@ -47,9 +47,9 @@ public class OperatorInterface
 	{
     	//If the value from the controller is less than the deadzone value then it zeros out
     	//If not it subtracts the deadzone from the controller value
-		amount = -(Math.abs(amount) <= Robot.DEADZONE ? 0 : (amount = (amount < 0) ? amount : amount));
+		amount = -(Math.abs(amount) <= RobotMap.deadzone ? 0 : (amount = (amount < 0) ? amount : amount));
 		
 		//Multiplies the controller value by the slope made from (y2 - y1) / (x2 - x1)
-		return ((max - 0) / ((1 - Robot.DEADZONE) - 0) * (amount - 0));
+		return ((max - 0) / ((1 - RobotMap.deadzone) - 0) * (amount - 0));
 	}
 }

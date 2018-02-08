@@ -1,6 +1,6 @@
 package org.usfirst.frc.team2335.robot.subsystems;
 
-import org.usfirst.frc.team2335.robot.Robot;
+import org.usfirst.frc.team2335.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Servo;
@@ -22,18 +22,18 @@ public class VaccuumArm extends Subsystem
 	public VaccuumArm()
 	{
 		//Define motors for vaccuum
-		vaccuumMotor = new Talon(Robot.VACCUUM_MOTOR);
-		quickRelease = new Servo(Robot.RELEASE_SERVO);
+		vaccuumMotor = new Talon(RobotMap.MotorControllers.vaccuumMotor);
+		quickRelease = new Servo(RobotMap.Servos.valveServo);
 		
 		//Define solenoids
-		leftLaunch = new Solenoid(Robot.LEFT_LAUNCH);
-		rightLaunch = new Solenoid(Robot.RIGHT_LAUNCH);
+		leftLaunch = new Solenoid(RobotMap.Solenoids.leftLaunch);
+		rightLaunch = new Solenoid(RobotMap.Solenoids.rightLaunch);
 		
-		lowerAimExtend = new Solenoid(Robot.LOWER_AIM_EXTEND);
-		lowerAimRetract = new Solenoid(Robot.LOWER_AIM_RETRACT);
+		lowerAimExtend = new Solenoid(RobotMap.Solenoids.lowerAimExtend);
+		lowerAimRetract = new Solenoid(RobotMap.Solenoids.lowerAimRetract);
 		
-		upperAimExtend = new Solenoid(Robot.UPPER_AIM_EXTEND);
-		upperAimRetract = new Solenoid(Robot.UPPER_AIM_RETRACT);
+		upperAimExtend = new Solenoid(RobotMap.Solenoids.upperAimExtend);
+		upperAimRetract = new Solenoid(RobotMap.Solenoids.upperAimRetract);
 	}
 	
 	//Sets both solenoids for the pistons to true, allowing them to contract
