@@ -9,17 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot
-{
-	//Constants
-	//Deadzone
-	public static final double DEADZONE = 0.15;
-	
-	//Motor controller constants
-	public static final int LEFT_MOTOR = 0, RIGHT_MOTOR = 1;
-	
-	//Controller axes
-	public static final int X_AXIS = 0, Y_AXIS = 1;
-	
+{	
 	//Subsystems
 	public static Drive drive;
 	public static OperatorInterface oi;
@@ -31,8 +21,7 @@ public class Robot extends TimedRobot
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
-	//Used to initialize code
-	@Override
+	@Override //Used to initialize code
 	public void robotInit()
 	{
 		drive = new Drive();
@@ -90,8 +79,8 @@ public class Robot extends TimedRobot
 	@Override
 	public void teleopPeriodic()
 	{
-		yVal = oi.getAxis(Y_AXIS, 1);
-		xVal = oi.getAxis(X_AXIS, 1);
+		yVal = oi.getAxis(RobotMap.Controller.Axes.x, 1);
+		xVal = oi.getAxis(RobotMap.Controller.Axes.y, 1);
 			
 		drive.drive(yVal, -xVal);
 						
