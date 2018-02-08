@@ -15,12 +15,7 @@ public class RobotMap
 		public static final int leftEncoderA = 0, leftEncoderB = 1, rightEncoderA = 2, rightEncoderB = 3;
 	}
 	
-	public static class MotorControllers
-	{
-		//Drive controllers
-		public static final int leftDrive = 0, rightDrive = 1;
-	}
-	
+	//Controller constants
 	public static class Controller
 	{
 		//Axis constants
@@ -29,5 +24,12 @@ public class RobotMap
 			//X and Y drive
 			public static final int xDrive = 0, yDrive = 1;
 		}
+	}
+	
+	//Motor controller constants
+	public static class MotorControllers
+	{
+		//Drive controllers
+		public static final int leftDrive = 0, rightDrive = 1;
 	}
 }
