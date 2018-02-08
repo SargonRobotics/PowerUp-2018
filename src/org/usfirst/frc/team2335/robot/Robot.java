@@ -20,7 +20,7 @@ public class Robot extends TimedRobot
 	public static final int LEFT_MOTOR = 0, RIGHT_MOTOR = 1, VACCUUM_MOTOR = 2;
 	
 	//Sensor ports
-	public static final int RELEASE_SERVO = 0;
+	public static final int RELEASE_SERVO = 9;
 	
 	//Controller axes
 	public static final int X_AXIS = 0, Y_AXIS = 1;
@@ -28,7 +28,11 @@ public class Robot extends TimedRobot
 	//Controller buttons
 	public static final int VACCUUM_BUTTON = 1, RELEASE_BUTTON = 2;
 	
-	//Subsystems
+	//Solenoid ports
+	public static final int LEFT_LAUNCH = 0, RIGHT_LAUNCH = 1, LOWER_AIM_EXTEND = 2, LOWER_AIM_RETRACT = 3,
+			UPPER_AIM_EXTEND = 4, UPPER_AIM_RETRACT = 5;
+	
+	/*** Subsystems ***/
 	public static Drive drive;
 	public static VaccuumArm vaccuumArm;
 	public static OperatorInterface oi;
@@ -100,9 +104,11 @@ public class Robot extends TimedRobot
 	@Override
 	public void teleopPeriodic()
 	{
+		//Gets axis values from the controller
 		yVal = oi.getAxis(Y_AXIS, 1);
 		xVal = oi.getAxis(X_AXIS, 1);
 			
+		//Drives robot (woah didn't know that one)
 		drive.drive(yVal, -xVal);
 						
 		Scheduler.getInstance().run();

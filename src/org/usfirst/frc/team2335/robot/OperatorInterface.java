@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2335.robot;
 
 import org.usfirst.frc.team2335.robot.commands.QuickRelease;
+import org.usfirst.frc.team2335.robot.commands.SetArm;
 import org.usfirst.frc.team2335.robot.commands.ToggleVaccuum;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -9,7 +10,12 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OperatorInterface
 {
 	Joystick xbox;
+	
+	//Vaccuum Buttons
 	JoystickButton toggleVaccuum, quickRelease;
+	
+	//Pneumatics Buttons
+	JoystickButton pushCubeButton, other;
 	
 	public OperatorInterface()
 	{
@@ -20,9 +26,16 @@ public class OperatorInterface
 		toggleVaccuum = new JoystickButton(xbox, Robot.VACCUUM_BUTTON);
 		quickRelease = new JoystickButton(xbox, Robot.RELEASE_BUTTON);
 		
+		//TODO: Give these button constants
+		pushCubeButton = new JoystickButton(xbox, 3);
+		other = new JoystickButton(xbox, 4);
+		
 		//Linking buttons to commands
 		toggleVaccuum.toggleWhenPressed(new ToggleVaccuum());
 		quickRelease.whenPressed(new QuickRelease());
+		
+		pushCubeButton.whileHeld(new SetArm(0));
+		other.whileHeld(new SetArm(1));
 	}
 	
 	public double getAxis(int axis, double max)

@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 public class Drive extends Subsystem
 {
 	Victor leftMotor, rightMotor;
-	
 	DifferentialDrive drive;
 		
 	public Drive()
@@ -18,13 +17,13 @@ public class Drive extends Subsystem
 		leftMotor = new Victor(Robot.LEFT_MOTOR);
 		rightMotor = new Victor(Robot.RIGHT_MOTOR);
 	
-		
 		//Drive controller definition
 		drive = new DifferentialDrive(leftMotor, rightMotor);
 	}
 	
 	public void drive(double moveVal, double rotateVal)
 	{			
+		//Command that drives the robot around
 		drive.arcadeDrive(moveVal, rotateVal);
 	}
 	
