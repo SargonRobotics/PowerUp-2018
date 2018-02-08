@@ -21,6 +21,7 @@ public class RobotMap
 		}
 	}
 	
+	//Motor controller constants
 	public static class MotorControllers
 	{
 		//Drive motors
