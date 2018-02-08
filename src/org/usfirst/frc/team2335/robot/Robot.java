@@ -31,7 +31,7 @@ public class Robot extends TimedRobot
 
 	//Encoder ports
 	//TODO: Sets these to real things
-	public static final int ENCODER_A = 0, ENCODER_B = 1;
+	public static final int ENCODER_L_A = 0, ENCODER_L_B = 1, ENCODER_R_A = 2, ENCODER_R_B = 3;
 
 	//Subsystems
 	public static EncoderPID encoderPID;

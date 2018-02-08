@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 public class EncoderPID extends PIDSubsystem
 {
-	Encoder cimEncoder;
+	Encoder cimEncoderLeft, cimEncoderRight;
 	
 	//TODO: Fine tune these, currently not accurate what so ever
 	private static double speed = 1.0, error = 2000;
@@ -23,7 +23,8 @@ public class EncoderPID extends PIDSubsystem
     {
     	super("Cim Encoder", (speed / error), 0.0, 0.0);
     	
-    	cimEncoder = new Encoder(Robot.ENCODER_A, Robot.ENCODER_B);
+    	cimEncoderLeft = new Encoder(Robot.ENCODER_L_A, Robot.ENCODER_L_B);
+    	cimEncoderRight = new Encoder(Robot.ENCODER_R_A, Robot.ENCODER_R_B);
     	
     	alliancePlacements = DriverStation.getInstance().getGameSpecificMessage();
     	
@@ -67,7 +68,8 @@ public class EncoderPID extends PIDSubsystem
     
     public void reset()
     {
-    	cimEncoder.reset();
+    	cimEncoderLeft.reset();
+    	cimEncoderRight.reset();
     }
     
     
@@ -78,7 +80,7 @@ public class EncoderPID extends PIDSubsystem
 
     protected double returnPIDInput()
     {
-        return cimEncoder.getDistance();
+        return (cimEncoderLeft.getDistance() + cimEncoderRight.getDistance()) / 2;
     }
 
     protected void usePIDOutput(double output)
