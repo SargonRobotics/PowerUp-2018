@@ -79,8 +79,8 @@ public class Robot extends TimedRobot
 	@Override
 	public void teleopPeriodic()
 	{
-		yVal = oi.getAxis(RobotMap.Controller.Axes.x, 1);
-		xVal = oi.getAxis(RobotMap.Controller.Axes.y, 1);
+		yVal = oi.getAxis(RobotMap.Controller.Axes.xDrive, 1);
+		xVal = oi.getAxis(RobotMap.Controller.Axes.yDrive, 1);
 			
 		drive.drive(yVal, -xVal);
 						

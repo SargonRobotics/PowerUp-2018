@@ -16,7 +16,7 @@ public class RobotMap
 		//Controller axes constants
 		static class Axes
 		{
-			public static final int x = 0, y = 1;
+			public static final int xDrive = 0, yDrive = 1;
 		}
 	}
 }
