@@ -1,6 +1,6 @@
 package org.usfirst.frc.team2335.robot.subsystems;
 
-import org.usfirst.frc.team2335.robot.Robot;
+import org.usfirst.frc.team2335.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -11,8 +11,8 @@ public class Climber extends Subsystem
 
 	public Climber()
 	{
-		hookMotor = new Victor(Robot.HOOK_MOTOR);
-		climbMotor = new Victor(Robot.CLIMB_MOTOR);
+		hookMotor = new Victor(RobotMap.MotorControllers.hookMotor);
+		climbMotor = new Victor(RobotMap.MotorControllers.climbWinch);
 	}
     
 	public void moveHook(double speed)

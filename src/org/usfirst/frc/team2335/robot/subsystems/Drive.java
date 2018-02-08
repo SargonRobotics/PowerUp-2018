@@ -1,6 +1,6 @@
 package org.usfirst.frc.team2335.robot.subsystems;
 
-import org.usfirst.frc.team2335.robot.Robot;
+import org.usfirst.frc.team2335.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -15,8 +15,8 @@ public class Drive extends Subsystem
 	public Drive()
 	{
 		//Motor controller definitions
-		leftMotor = new Victor(Robot.LEFT_MOTOR);
-		rightMotor = new Victor(Robot.RIGHT_MOTOR);
+		leftMotor = new Victor(RobotMap.MotorControllers.leftDrive);
+		rightMotor = new Victor(RobotMap.MotorControllers.rightDrive);
 	
 		
 		//Drive controller definition
