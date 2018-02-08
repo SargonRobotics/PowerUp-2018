@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2335.robot.subsystems;
 
 import org.usfirst.frc.team2335.robot.Robot;
+import org.usfirst.frc.team2335.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
@@ -23,8 +24,8 @@ public class EncoderPID extends PIDSubsystem
     {
     	super("Cim Encoder", (speed / error), 0.0, 0.0);
     	
-    	cimEncoderLeft = new Encoder(Robot.ENCODER_L_A, Robot.ENCODER_L_B);
-    	cimEncoderRight = new Encoder(Robot.ENCODER_R_A, Robot.ENCODER_R_B);
+    	cimEncoderLeft = new Encoder(RobotMap.Sensors.leftEncoderA, RobotMap.Sensors.leftEncoderB);
+    	cimEncoderRight = new Encoder(RobotMap.Sensors.rightEncoderA, RobotMap.Sensors.rightEncoderB);
     	
     	alliancePlacements = DriverStation.getInstance().getGameSpecificMessage();
     	

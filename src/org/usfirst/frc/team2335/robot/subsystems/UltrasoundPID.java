@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2335.robot.subsystems;
 
 import org.usfirst.frc.team2335.robot.Robot;
+import org.usfirst.frc.team2335.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
@@ -16,7 +17,7 @@ public class UltrasoundPID extends PIDSubsystem
     {
         super("Ultrasound", (speed / error), 0.0, 0.0);
         
-        sensor = new AnalogInput(Robot.ULTRASOUND_PIN);
+        sensor = new AnalogInput(RobotMap.Sensors.ultrasoundAnalog);
         setSetpoint(0.0);
     }
     
