@@ -8,7 +8,7 @@ public class ShootCube extends Command
 {
     public ShootCube()
     {
-        requires(Robot.vaccuumArm);
+        requires(Robot.vacuumArm);
         
         //TODO: Find correct time
         setTimeout(3); //Stops the command after 3 seconds
@@ -17,7 +17,7 @@ public class ShootCube extends Command
     // Called just before this Command runs the first time
     protected void initialize()
     {
-    	Robot.vaccuumArm.launchCube();
+    	Robot.vacuumArm.launchCube();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,7 +35,7 @@ public class ShootCube extends Command
     // Called once after isFinished returns true
     protected void end()
     {
-    	Robot.vaccuumArm.resetLaunch();
+    	Robot.vacuumArm.resetLaunch();
     }
 
     // Called when another command which requires one or more of the same

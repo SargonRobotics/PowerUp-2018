@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2335.robot;
 
 import org.usfirst.frc.team2335.robot.subsystems.Drive;
-import org.usfirst.frc.team2335.robot.subsystems.VaccuumArm;
+import org.usfirst.frc.team2335.robot.subsystems.VacuumArm;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -13,7 +13,7 @@ public class Robot extends TimedRobot
 {
 	//Subsystems
 	public static Drive drive;
-	public static VaccuumArm vaccuumArm;
+	public static VacuumArm vacuumArm;
 	public static OperatorInterface oi;
 	
 	//Controller values
@@ -28,7 +28,7 @@ public class Robot extends TimedRobot
 	public void robotInit()
 	{
 		drive = new Drive();
-		vaccuumArm = new VaccuumArm();
+		vacuumArm = new VacuumArm();
 		oi = new OperatorInterface(); //Initialize this last or you break everything
 		
 		//Adds auto commands

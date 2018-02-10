@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class VaccuumArm extends Subsystem
+public class VacuumArm extends Subsystem
 {
 	//Vaccuum control
 	Talon vaccuumMotor;
@@ -19,7 +19,7 @@ public class VaccuumArm extends Subsystem
 	Solenoid leftLaunch, rightLaunch;
 	Solenoid lowerAimExtend, lowerAimRetract, upperAimExtend, upperAimRetract;
 	
-	public VaccuumArm()
+	public VacuumArm()
 	{
 		//Define motors for vaccuum
 		vaccuumMotor = new Talon(RobotMap.MotorControllers.vaccuumMotor);

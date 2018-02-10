@@ -11,12 +11,14 @@ public class RobotMap
 		//Axes constants
 		public static class Axes
 		{
+			//Drive axes
 			public static final int xDrive = 0, yDrive = 1;
 		}
 		
 		//Button constants
 		public static class Buttons
 		{
+			//Vacuum buttons
 			public static final int vaccuumToggle = 1, toggleValve = 2;
 		}
 	}

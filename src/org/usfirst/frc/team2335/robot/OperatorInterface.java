@@ -2,7 +2,7 @@ package org.usfirst.frc.team2335.robot;
 
 import org.usfirst.frc.team2335.robot.commands.QuickRelease;
 import org.usfirst.frc.team2335.robot.commands.SetArm;
-import org.usfirst.frc.team2335.robot.commands.ToggleVaccuum;
+import org.usfirst.frc.team2335.robot.commands.ToggleVacuum;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -31,7 +31,7 @@ public class OperatorInterface
 		other = new JoystickButton(xbox, 4);
 		
 		//Linking buttons to commands
-		toggleVaccuum.toggleWhenPressed(new ToggleVaccuum());
+		toggleVaccuum.toggleWhenPressed(new ToggleVacuum());
 		quickRelease.whenPressed(new QuickRelease());
 		
 		pushCubeButton.whileHeld(new SetArm(0));

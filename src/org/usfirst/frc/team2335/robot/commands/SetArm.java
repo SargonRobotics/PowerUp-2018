@@ -13,7 +13,7 @@ public class SetArm extends Command
     	//Stores which  state the arm should be in
         _armState = armState;
         
-        requires(Robot.vaccuumArm);
+        requires(Robot.vacuumArm);
     }
 
     // Called just before this Command runs the first time
@@ -23,11 +23,11 @@ public class SetArm extends Command
     	switch(_armState)
     	{
 	    	case 0:
-	    		Robot.vaccuumArm.switchArm();
+	    		Robot.vacuumArm.switchArm();
 	    		break;
 	    		
 	    	case 1:
-	    		Robot.vaccuumArm.scaleArm();
+	    		Robot.vacuumArm.scaleArm();
 	    		break;
     	}
     }
@@ -47,7 +47,7 @@ public class SetArm extends Command
     // Called once after isFinished returns true
     protected void end()
     {
-    	Robot.vaccuumArm.groundArm();
+    	Robot.vacuumArm.groundArm();
     }
 
     // Called when another command which requires one or more of the same

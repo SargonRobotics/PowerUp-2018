@@ -4,11 +4,11 @@ import org.usfirst.frc.team2335.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ToggleVaccuum extends Command
+public class ToggleVacuum extends Command
 {
-    public ToggleVaccuum()
+    public ToggleVacuum()
     {
-        requires(Robot.vaccuumArm);
+        requires(Robot.vacuumArm);
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +20,7 @@ public class ToggleVaccuum extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute()
     {
-    	Robot.vaccuumArm.startVaccuum();
+    	Robot.vacuumArm.startVaccuum();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -32,7 +32,7 @@ public class ToggleVaccuum extends Command
     // Called once after isFinished returns true
     protected void end()
     {
-    	Robot.vaccuumArm.stopVaccuum();
+    	Robot.vacuumArm.stopVaccuum();
     }
 
     // Called when another command which requires one or more of the same
