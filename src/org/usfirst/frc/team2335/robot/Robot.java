@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2335.robot;
 
+import org.usfirst.frc.team2335.robot.commands.ResetShootingArm;
 import org.usfirst.frc.team2335.robot.subsystems.Drive;
 import org.usfirst.frc.team2335.robot.subsystems.VacuumArm;
 
@@ -35,6 +36,9 @@ public class Robot extends TimedRobot
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		//chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		
+		//Reset solenoids
+		SmartDashboard.putData("ResetPosition", new ResetShootingArm());
 	}
 
 	@Override
@@ -53,6 +57,8 @@ public class Robot extends TimedRobot
 	@Override
 	public void autonomousInit()
 	{
+		vacuumArm.groundArm();
+		
 		autonomousCommand = chooser.getSelected();
 
 		//Schedule the autonomous command (example)
