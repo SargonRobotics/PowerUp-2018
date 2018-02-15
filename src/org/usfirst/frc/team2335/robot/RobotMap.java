@@ -5,6 +5,12 @@ public class RobotMap
 	//Deadzone constant
 	public static final double deadzone = 0.15;
 	
+	public static class Camera
+	{
+		//Camera constants
+		public static final int width = 640, height = 480;
+	}
+	
 	//Controller constants
 	public static class Controller
 	{

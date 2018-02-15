@@ -1,7 +1,13 @@
 package org.usfirst.frc.team2335.robot;
 
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team2335.robot.subsystems.Drive;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -27,10 +33,35 @@ public class Robot extends TimedRobot
 		drive = new Drive();
 		oi = new OperatorInterface(); //Initialize this last or you break everything
 		
+		initCamera();
+		
 		//Adds auto commands
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		//chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+	}
+	
+	private void initCamera()
+	{
+		//Starts camera thread
+		new Thread(() ->
+		{
+			UsbCamera cam = CameraServer.getInstance().startAutomaticCapture();
+			cam.setResolution(RobotMap.Camera.width, RobotMap.Camera.height);
+			
+			CvSink sink = CameraServer.getInstance().getVideo();
+			CvSource outputStream = CameraServer.getInstance().putVideo("Obsergaytion_01", RobotMap.Camera.width, RobotMap.Camera.height);
+			
+			Mat vidSource = new Mat();
+			Mat output = new Mat();
+			
+			while(!Thread.interrupted())
+			{
+				sink.grabFrame(vidSource);
+				Imgproc.cvtColor(vidSource, output, Imgproc.COLOR_BGR2RGB);
+				outputStream.putFrame(output);
+			}
+		});
 	}
 
 	@Override
