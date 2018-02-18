@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class VacuumArm extends Subsystem
 {
 	//Vaccuum control
-	Talon vaccuumMotor;
+	Talon vacuumMotor;
 	Servo quickRelease;
 	
 	//Pneumatics control
@@ -22,7 +22,7 @@ public class VacuumArm extends Subsystem
 	public VacuumArm()
 	{
 		//Define motors for vaccuum
-		vaccuumMotor = new Talon(RobotMap.MotorControllers.vaccuumMotor);
+		vacuumMotor = new Talon(RobotMap.MotorControllers.vacuumMotor);
 		quickRelease = new Servo(RobotMap.Servos.valveServo);
 		
 		//Define solenoids
@@ -88,13 +88,13 @@ public class VacuumArm extends Subsystem
 	//Turns the vaccuum motor to full speed
 	public void startVaccuum()
 	{
-		vaccuumMotor.set(1);
+		vacuumMotor.set(1);
 	}
 	
 	//Stops the vaccuum motor
 	public void stopVaccuum()
 	{
-		vaccuumMotor.stopMotor();
+		vacuumMotor.stopMotor();
 	}
 	
 	//Closes the quick release valve

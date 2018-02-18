@@ -30,7 +30,7 @@ public class RobotMap
 		public static final int leftDrive = 0, rightDrive = 1;
 		
 		//Vaccuum port
-		public static final int vaccuumMotor = 2;
+		public static final int vacuumMotor = 2;
 	}
 	
 	//Servo constants
