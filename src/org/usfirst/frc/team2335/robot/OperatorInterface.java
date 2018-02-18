@@ -3,6 +3,10 @@ package org.usfirst.frc.team2335.robot;
 import org.usfirst.frc.team2335.robot.commands.teleop.Climb;
 import org.usfirst.frc.team2335.robot.commands.teleop.MoveHook;
 
+import org.usfirst.frc.team2335.robot.commands.QuickRelease;
+import org.usfirst.frc.team2335.robot.commands.SetArm;
+import org.usfirst.frc.team2335.robot.commands.ToggleVacuum;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -10,20 +14,34 @@ public class OperatorInterface
 {
 	Joystick xbox;
 	JoystickButton climbButton, hookUp, hookDown;
+	JoystickButton toggleVacuum, quickRelease;
+	JoystickButton pushCubeButton, other;
 	
 	public OperatorInterface()
 	{
+		/***Joystick definitions***/
 		xbox = new Joystick(0);
 		
+		//Hook
 		climbButton = new JoystickButton(xbox, Robot.CLIMB_BUTTON);
 		hookUp = new JoystickButton(xbox, Robot.HOOK_UP_BUTTON);
 		hookDown = new JoystickButton(xbox, Robot.HOOK_DOWN_BUTTON);
 		
+		//Vacuum arm TODO: Give these buttons constants
+		pushCubeButton = new JoystickButton(xbox, 3);
+		other = new JoystickButton(xbox, 4); //control suction with servo
 		
-		//Commands
+		/***Commands***/
+		//Vacuum arm
+		toggleVacuum.toggleWhenPressed(new ToggleVacuum());
+		quickRelease.whenPressed(new QuickRelease());
+		pushCubeButton.whileHeld(new SetArm(0));
+		other.whileHeld(new SetArm(1));
 		
+		//Climber
 		climbButton.whileHeld(new Climb(1.0));
 		
+		//Hook
 		hookUp.whileHeld(new MoveHook(1.0));
 		hookDown.whileHeld(new MoveHook(-1.0));
 	}

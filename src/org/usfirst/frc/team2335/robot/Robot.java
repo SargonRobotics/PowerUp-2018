@@ -3,10 +3,12 @@ package org.usfirst.frc.team2335.robot;
 import org.usfirst.frc.team2335.robot.commands.groups.AutoDriveCenter;
 import org.usfirst.frc.team2335.robot.commands.groups.AutoDriveSide;
 import org.usfirst.frc.team2335.robot.subsystems.Climber;
+import org.usfirst.frc.team2335.robot.commands.ResetShootingArm;
 import org.usfirst.frc.team2335.robot.subsystems.Drive;
 import org.usfirst.frc.team2335.robot.subsystems.EncoderPID;
 import org.usfirst.frc.team2335.robot.subsystems.GyroPID;
 import org.usfirst.frc.team2335.robot.subsystems.UltrasoundPID;
+import org.usfirst.frc.team2335.robot.subsystems.VacuumArm;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -43,7 +45,8 @@ public class Robot extends TimedRobot
 	public static UltrasoundPID ultrasoundPID;
 	public static GyroPID gyroPID;
 	public static Climber climber;
-	
+
+	public static VacuumArm vacuumArm;
 	public static OperatorInterface oi;
 
 	//Controller values
@@ -61,6 +64,7 @@ public class Robot extends TimedRobot
 		ultrasoundPID = new UltrasoundPID();
 		gyroPID = new GyroPID();
 		climber = new Climber();
+		vacuumArm = new VacuumArm();
 		
 		oi = new OperatorInterface(); //Initialize this last or you break everything
 		
@@ -69,6 +73,9 @@ public class Robot extends TimedRobot
 		chooser.addObject("Right Side Auto", new AutoDriveSide('R'));
 		chooser.addObject("Center Auto", new AutoDriveCenter());
 		SmartDashboard.putData("Auto mode", chooser);
+		
+		//Reset solenoids
+		SmartDashboard.putData("ResetPosition", new ResetShootingArm());
 	}
 
 	@Override
@@ -87,6 +94,8 @@ public class Robot extends TimedRobot
 	@Override
 	public void autonomousInit()
 	{
+		vacuumArm.groundArm();
+		
 		autonomousCommand = chooser.getSelected();
 
 		//Schedule the autonomous command (example)
@@ -117,10 +126,12 @@ public class Robot extends TimedRobot
 	@Override
 	public void teleopPeriodic()
 	{
+		//Gets axis values from the controller
 		yVal = oi.getAxis(RobotMap.Controller.Axes.xDrive, 1);
 		xVal = oi.getAxis(RobotMap.Controller.Axes.yDrive, 1);
 			
 		drive.drive(yVal, -xVal);		
+						
 		Scheduler.getInstance().run();
 	}
 
