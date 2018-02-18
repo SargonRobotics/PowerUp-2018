@@ -36,7 +36,7 @@ public class Robot extends TimedRobot
 	//Encoder ports
 	//TODO: Sets these to real things
 	public static final int ENCODER_A = 0, ENCODER_B = 1;
-
+	
 	//Subsystems
 	public static EncoderPID encoderPID;
 	public static Drive drive;
@@ -53,8 +53,7 @@ public class Robot extends TimedRobot
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
-	//Used to initialize code
-	@Override
+	@Override //Used to initialize code
 	public void robotInit()
 	{
 		encoderPID = new EncoderPID();
@@ -118,8 +117,8 @@ public class Robot extends TimedRobot
 	@Override
 	public void teleopPeriodic()
 	{
-		yVal = oi.getAxis(Y_AXIS, 1);
-		xVal = oi.getAxis(X_AXIS, 1);
+		yVal = oi.getAxis(RobotMap.Controller.Axes.xDrive, 1);
+		xVal = oi.getAxis(RobotMap.Controller.Axes.yDrive, 1);
 			
 		drive.drive(yVal, -xVal);		
 		Scheduler.getInstance().run();
@@ -129,6 +128,9 @@ public class Robot extends TimedRobot
 	@Override
 	public void testPeriodic()
 	{
-		
+		//Print ultrasound distance
+		System.out.println("Ultrasound Distance: " + ultrasoundPID.getDistance());
+		//Print current encoder position
+		System.out.println("Encoder Position: " + encoderPID.getPosition());
 	}
 }
