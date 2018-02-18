@@ -18,6 +18,7 @@ public class Drive extends Subsystem
 		//Motor controller definitions
 		leftMotor = new Victor(RobotMap.MotorControllers.leftDrive);
 		rightMotor = new Victor(RobotMap.MotorControllers.rightDrive);
+		rightMotor.setInverted(true);
 		
 		//Drive controller definition
 		drive = new DifferentialDrive(leftMotor, rightMotor);

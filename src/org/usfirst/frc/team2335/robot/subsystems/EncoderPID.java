@@ -49,7 +49,7 @@ public class EncoderPID extends PIDSubsystem
     	if(robotSide == 'C') {
     		setSetpoint(encoderCenter);
     	}
-    	DriverStation.reportError("You're fucked", true);
+    	//DriverStation.reportError("You're fucked", true);
     	setSetpoint(encoderCounts[0]);
     }
     
