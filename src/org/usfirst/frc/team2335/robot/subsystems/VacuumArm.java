@@ -17,6 +17,9 @@ public class VacuumArm extends Subsystem
 	Solenoid leftLaunch, rightLaunch;
 	Solenoid lowerAimExtend, lowerAimRetract, upperAimExtend, upperAimRetract;
 	
+	//Iteration counter
+	int loopCounts = 0;
+	
 	public VacuumArm()
 	{
 		//Compressor definition
@@ -88,12 +91,16 @@ public class VacuumArm extends Subsystem
 	//Turns the vaccuum motor to full speed
 	public void startVaccuum()
 	{
-		vaccuumMotor.set(1);
+		loopCounts++;
+		
+		double motorVal = (loopCounts <= 15) ? (loopCounts / 2) / ((loopCounts / 2) - 15) : 1;
+		vaccuumMotor.set(motorVal);
 	}
 	
 	//Stops the vaccuum motor
 	public void stopVaccuum()
 	{
+		loopCounts = 0;
 		vaccuumMotor.stopMotor();
 	}
 	
