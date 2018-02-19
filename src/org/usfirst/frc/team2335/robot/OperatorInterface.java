@@ -8,16 +8,17 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OperatorInterface
 {
-	Joystick xbox;
+	Joystick mainDrive, coDrive;
 	JoystickButton climbButton, hookUp, hookDown;
 	
 	public OperatorInterface()
 	{
-		xbox = new Joystick(0);
+		mainDrive = new Joystick(0);
+		coDrive = new Joystick(1);
 		
-		climbButton = new JoystickButton(xbox, RobotMap.Controller.Buttons.climbButton);
-		hookUp = new JoystickButton(xbox, RobotMap.Controller.Buttons.hookUp);
-		hookDown = new JoystickButton(xbox, RobotMap.Controller.Buttons.hookDown);
+		climbButton = new JoystickButton(coDrive, RobotMap.Controller.Buttons.climbButton);
+		hookUp = new JoystickButton(coDrive, RobotMap.Controller.Buttons.hookUp);
+		hookDown = new JoystickButton(coDrive, RobotMap.Controller.Buttons.hookDown);
 		
 		
 		//Commands
@@ -30,7 +31,7 @@ public class OperatorInterface
 	
 	public double getAxis(int axis, double max)
 	{
-		return deadzone(xbox.getRawAxis(axis), max);
+		return deadzone(mainDrive.getRawAxis(axis), max);
 	}
 	
 	private double deadzone(double amount, double max) //Creates a deadzone for the axes of the controller

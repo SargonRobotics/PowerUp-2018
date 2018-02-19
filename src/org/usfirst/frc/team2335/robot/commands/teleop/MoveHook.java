@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class MoveHook extends Command
 {
-	final double absoluteSpeed = 1.0;
+	final double absoluteSpeed = 1;
 	double speed = 0;
 	
     public MoveHook(boolean movingUp)
@@ -34,13 +34,15 @@ public class MoveHook extends Command
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    protected void end()
+    {
     	Robot.climber.stopHook();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    protected void interrupted()
+    {
     	end();
     }
 }

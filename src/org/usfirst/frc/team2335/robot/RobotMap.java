@@ -17,7 +17,7 @@ public class RobotMap
 		//Button constants
 		public static class Buttons
 		{
-			public static final int climbButton = 0, hookUp = 1, hookDown = 2;
+			public static final int climbButton = 1, hookUp = 2, hookDown = 3;
 		}
 	}
 	
@@ -28,6 +28,6 @@ public class RobotMap
 		public static final int leftDrive = 0, rightDrive = 1;
 		
 		//Climb motors
-		public static final int hookMotor = 2, climbWinch = 3;
+		public static final int hookMotor = 5, climbWinch = 4;
 	}
 }
