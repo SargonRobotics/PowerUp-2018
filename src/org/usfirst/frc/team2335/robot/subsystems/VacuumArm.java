@@ -3,7 +3,6 @@ package org.usfirst.frc.team2335.robot.subsystems;
 import org.usfirst.frc.team2335.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -12,7 +11,6 @@ public class VacuumArm extends Subsystem
 {
 	//Vaccuum control
 	Talon vaccuumMotor;
-	Servo quickRelease;
 	
 	//Pneumatics control
 	Compressor airCompressor;
@@ -21,9 +19,11 @@ public class VacuumArm extends Subsystem
 	
 	public VacuumArm()
 	{
+		//Compressor definition
+		airCompressor = new Compressor();
+		
 		//Define motors for vaccuum
 		vaccuumMotor = new Talon(RobotMap.MotorControllers.vaccuumMotor);
-		quickRelease = new Servo(RobotMap.Servos.valveServo);
 		
 		//Define solenoids
 		leftLaunch = new Solenoid(RobotMap.Solenoids.leftLaunch);
@@ -60,8 +60,8 @@ public class VacuumArm extends Subsystem
 	//Sets arm to lower aiming position
 	public void switchArm()
 	{		
-		setLowerArmExtended(false);
-		setUpperArmExtended(false);
+		setLowerArmExtended(true);
+		setUpperArmExtended(true);
 	}
 	
 	//Sets arm to upper aiming position
@@ -95,20 +95,6 @@ public class VacuumArm extends Subsystem
 	public void stopVaccuum()
 	{
 		vaccuumMotor.stopMotor();
-	}
-	
-	//Closes the quick release valve
-	public void closeValve()
-	{
-		//TODO: Find appropriate angle
-		quickRelease.set(180);
-	}
-	
-	//Opens the quick release valve
-	public void releaseValve()
-	{
-		//TODO: Find appropriate angle
-		quickRelease.set(140);
 	}
 	
     public void initDefaultCommand()

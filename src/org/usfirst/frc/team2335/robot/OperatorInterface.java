@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2335.robot;
 
-import org.usfirst.frc.team2335.robot.commands.QuickRelease;
 import org.usfirst.frc.team2335.robot.commands.SetArm;
+import org.usfirst.frc.team2335.robot.commands.ShootCube;
 import org.usfirst.frc.team2335.robot.commands.ToggleVacuum;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -15,7 +15,7 @@ public class OperatorInterface
 	JoystickButton toggleVaccuum, quickRelease;
 	
 	//Pneumatics Buttons
-	JoystickButton pushCubeButton, other;
+	JoystickButton pushCubeButton, aimLow, aimHigh;
 	
 	public OperatorInterface()
 	{
@@ -23,19 +23,16 @@ public class OperatorInterface
 		xbox = new Joystick(0);
 		
 		//JoystickButton definitions
-		toggleVaccuum = new JoystickButton(xbox, RobotMap.Controller.Buttons.toggleValve);
-		quickRelease = new JoystickButton(xbox, RobotMap.Controller.Buttons.vaccuumToggle);
-		
-		//TODO: Give these button constants
-		pushCubeButton = new JoystickButton(xbox, 3);
-		other = new JoystickButton(xbox, 4);
+		toggleVaccuum = new JoystickButton(xbox, RobotMap.Controller.Buttons.vaccuumToggle);
+		pushCubeButton = new JoystickButton(xbox, RobotMap.Controller.Buttons.shoot);
+		aimLow = new JoystickButton(xbox, RobotMap.Controller.Buttons.armAimLow);
+		aimHigh = new JoystickButton(xbox, RobotMap.Controller.Buttons.armAimHigh);
 		
 		//Linking buttons to commands
 		toggleVaccuum.toggleWhenPressed(new ToggleVacuum());
-		quickRelease.whenPressed(new QuickRelease());
-		
-		pushCubeButton.whileHeld(new SetArm(0));
-		other.whileHeld(new SetArm(1));
+		pushCubeButton.whenPressed(new ShootCube());
+		aimLow.whileHeld(new SetArm(RobotMap.States.Arm.aimSwitch));
+		aimHigh.whileHeld(new SetArm(RobotMap.States.Arm.aimScale));
 	}
 	
 	public double getAxis(int axis, double max)

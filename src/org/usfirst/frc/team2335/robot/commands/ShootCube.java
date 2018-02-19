@@ -11,7 +11,7 @@ public class ShootCube extends Command
         requires(Robot.vacuumArm);
         
         //TODO: Find correct time
-        setTimeout(3); //Stops the command after 3 seconds
+        setTimeout(2); //Stops the command after 3 seconds
     }
 
     // Called just before this Command runs the first time

@@ -19,7 +19,7 @@ public class RobotMap
 		public static class Buttons
 		{
 			//Vacuum buttons
-			public static final int vaccuumToggle = 1, toggleValve = 2;
+			public static final int vaccuumToggle = 1, shoot = 2, armAimLow = 3, armAimHigh = 4;
 		}
 	}
 	
@@ -31,13 +31,6 @@ public class RobotMap
 		
 		//Vaccuum port
 		public static final int vaccuumMotor = 2;
-	}
-	
-	//Servo constants
-	public static class Servos
-	{
-		//Valve servo
-		public static final int valveServo = 9;
 	}
 
 	//Solenoid constants
@@ -51,5 +44,14 @@ public class RobotMap
 		
 		//Upper aiming pistons
 		public static final int upperAimExtend = 4, upperAimRetract = 5;
+	}
+	
+	//State constants
+	public static class States
+	{
+		public static class Arm
+		{
+			public static final int aimSwitch = 1, aimScale = 2;
+		}
 	}
 }
