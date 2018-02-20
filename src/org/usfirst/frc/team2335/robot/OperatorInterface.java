@@ -1,19 +1,37 @@
 package org.usfirst.frc.team2335.robot;
 
+import org.usfirst.frc.team2335.robot.commands.teleop.Climb;
+import org.usfirst.frc.team2335.robot.commands.teleop.MoveHook;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OperatorInterface
 {
-	Joystick xbox;
+	Joystick mainDrive, coDrive;
+	JoystickButton climbButton, hookUp, hookDown;
 	
 	public OperatorInterface()
 	{
-		xbox = new Joystick(0);
+		mainDrive = new Joystick(0);
+		coDrive = new Joystick(1);
+		
+		climbButton = new JoystickButton(mainDrive, RobotMap.Controller.Buttons.climbButton);
+		hookUp = new JoystickButton(mainDrive, RobotMap.Controller.Buttons.hookUp);
+		hookDown = new JoystickButton(mainDrive, RobotMap.Controller.Buttons.hookDown);
+		
+		
+		//Commands
+		
+		climbButton.whileHeld(new Climb());
+		
+		hookUp.whileHeld(new MoveHook(true));
+		hookDown.whileHeld(new MoveHook(false));
 	}
 	
 	public double getAxis(int axis, double max)
 	{
-		return deadzone(xbox.getRawAxis(axis), max);
+		return deadzone(mainDrive.getRawAxis(axis), max);
 	}
 	
 	private double deadzone(double amount, double max) //Creates a deadzone for the axes of the controller

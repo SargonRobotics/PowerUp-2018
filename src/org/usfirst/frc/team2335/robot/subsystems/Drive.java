@@ -18,8 +18,8 @@ public class Drive extends Subsystem
 		//Motor controller definitions
 		leftMotor = new Victor(RobotMap.MotorControllers.leftDrive);
 		rightMotor = new Victor(RobotMap.MotorControllers.rightDrive);
-		
-		rightMotor.setInverted(true);
+
+		leftMotor.setInverted(true);
 		
 		//Drive controller definition
 		drive = new DifferentialDrive(leftMotor, rightMotor);
@@ -30,6 +30,11 @@ public class Drive extends Subsystem
 		//Function that drives the robot
 		//Turning is inverted, so I'm inverting in the code
 		drive.arcadeDrive(moveVal, -rotateVal);
+	}
+	
+	public void stop()
+	{
+		drive.stopMotor();
 	}
 	
     public void initDefaultCommand()

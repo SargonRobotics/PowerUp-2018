@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2335.robot;
 
+import org.usfirst.frc.team2335.robot.subsystems.Climber;
 import org.usfirst.frc.team2335.robot.subsystems.Drive;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -9,11 +10,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot
-{	
+{
 	//Subsystems
 	public static Drive drive;
-	public static OperatorInterface oi;
+	public static Climber climber;
 	
+	public static OperatorInterface oi;
+
 	//Controller values
 	private double yVal, xVal;
 
@@ -25,11 +28,11 @@ public class Robot extends TimedRobot
 	public void robotInit()
 	{
 		drive = new Drive();
+		climber = new Climber();
+		
 		oi = new OperatorInterface(); //Initialize this last or you break everything
 		
 		//Adds auto commands
-		//chooser.addDefault("Default Auto", new ExampleCommand());
-		//chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
@@ -82,8 +85,7 @@ public class Robot extends TimedRobot
 		yVal = oi.getAxis(RobotMap.Controller.Axes.xDrive, 1);
 		xVal = oi.getAxis(RobotMap.Controller.Axes.yDrive, 1);
 			
-		drive.drive(yVal, -xVal);
-						
+		drive.drive(yVal, -xVal);		
 		Scheduler.getInstance().run();
 	}
 
