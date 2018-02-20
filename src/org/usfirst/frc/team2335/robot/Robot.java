@@ -1,7 +1,9 @@
 package org.usfirst.frc.team2335.robot;
 
+import org.usfirst.frc.team2335.robot.commands.ResetShootingArm;
 import org.usfirst.frc.team2335.robot.subsystems.Climber;
 import org.usfirst.frc.team2335.robot.subsystems.Drive;
+import org.usfirst.frc.team2335.robot.subsystems.VacuumArm;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -12,13 +14,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot
 {
 	//Subsystems
-	public static Drive drive;
 	public static Climber climber;
-	
+	public static Drive drive;
+	public static VacuumArm vacuumArm;
 	public static OperatorInterface oi;
+
 
 	//Controller values
 	private double yVal, xVal;
+	private boolean vacuumState;
+	private int armState, prevArmState;
 
 	//For choosing autonomous command
 	Command autonomousCommand;
@@ -27,13 +32,20 @@ public class Robot extends TimedRobot
 	@Override //Used to initialize code
 	public void robotInit()
 	{
-		drive = new Drive();
 		climber = new Climber();
-		
+		drive = new Drive();
+		vacuumArm = new VacuumArm();
 		oi = new OperatorInterface(); //Initialize this last or you break everything
+		
+		vacuumState = false;
+		armState = 0;
+		prevArmState = armState;
 		
 		//Adds auto commands
 		SmartDashboard.putData("Auto mode", chooser);
+		
+		//Reset solenoids
+		SmartDashboard.putData("ResetPosition", new ResetShootingArm());
 	}
 
 	@Override
@@ -52,6 +64,8 @@ public class Robot extends TimedRobot
 	@Override
 	public void autonomousInit()
 	{
+		vacuumArm.groundArm();
+		
 		autonomousCommand = chooser.getSelected();
 
 		//Schedule the autonomous command (example)
@@ -82,10 +96,61 @@ public class Robot extends TimedRobot
 	@Override
 	public void teleopPeriodic()
 	{
+		//Gets axis values from the controller
 		yVal = oi.getAxis(RobotMap.Controller.Axes.xDrive, 1);
 		xVal = oi.getAxis(RobotMap.Controller.Axes.yDrive, 1);
 			
-		drive.drive(yVal, -xVal);		
+		//Drives robot (woah didn't know that one)
+		drive.drive(yVal, -xVal);
+		
+		//Changes vacuum state once the vacuum button is pressed
+		vacuumState = oi.getButtonPressed(0, RobotMap.Controller.Buttons.vaccuumToggle) ? !vacuumState : vacuumState;
+		
+		//Changes the arm state on a button pressed
+		
+		//Once the lower arm button pressed, if the arm isn't already in the low aim state, set it there
+		//Same thing with the high aim state
+		if(oi.getButtonPressed(0, RobotMap.Controller.Buttons.armAimLow))
+		{
+			armState = (armState == RobotMap.States.Arm.aimSwitch ? RobotMap.States.Arm.aimGround : RobotMap.States.Arm.aimSwitch);
+		}
+		else if(oi.getButtonPressed(0, RobotMap.Controller.Buttons.armAimHigh))
+		{
+			armState = (armState == RobotMap.States.Arm.aimScale ? RobotMap.States.Arm.aimGround : RobotMap.States.Arm.aimScale);
+		}
+		
+		//If the vacuum state is set to on, run the vacuum, otherwise stop it
+		if(vacuumState)
+		{
+			vacuumArm.startVaccuum();
+		}
+		else
+		{
+			vacuumArm.stopVaccuum();
+		}
+		
+		//If the arm state has changed, change the pistons accordingly
+		if(armState != prevArmState)
+		{
+			if(armState == RobotMap.States.Arm.aimSwitch)
+			{
+				vacuumArm.switchArm();
+			}
+			else if(armState == RobotMap.States.Arm.aimScale)
+			{
+				vacuumArm.scaleArm();
+			}
+			else if(armState == RobotMap.States.Arm.aimGround)
+			{
+				vacuumArm.groundArm();
+			}
+			
+			System.out.println(armState);
+		}
+		
+		//Set previous arm state
+		prevArmState = armState;
+						
 		Scheduler.getInstance().run();
 	}
 
