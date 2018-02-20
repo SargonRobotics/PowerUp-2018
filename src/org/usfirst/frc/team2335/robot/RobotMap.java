@@ -40,7 +40,7 @@ public class RobotMap
 		public static final int leftLaunch = 0, rightLaunch = 1;
 		
 		//Lower aiming pistons
-		public static final int lowerAimExtend = 2, lowerAimRetract = 3;
+		public static final int lowerAimExtend = 3, lowerAimRetract = 2;
 		
 		//Upper aiming pistons
 		public static final int upperAimExtend = 4, upperAimRetract = 5;
@@ -51,7 +51,7 @@ public class RobotMap
 	{
 		public static class Arm
 		{
-			public static final int aimSwitch = 1, aimScale = 2;
+			public static final int aimGround = 0, aimSwitch = 1, aimScale = 2;
 		}
 	}
 }

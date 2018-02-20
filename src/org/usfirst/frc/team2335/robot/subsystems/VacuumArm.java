@@ -16,7 +16,7 @@ public class VacuumArm extends Subsystem
 	Compressor airCompressor;
 	Solenoid leftLaunch, rightLaunch;
 	Solenoid lowerAimExtend, lowerAimRetract, upperAimExtend, upperAimRetract;
-	
+		
 	//Iteration counter
 	int loopCounts = 0;
 	
@@ -56,8 +56,8 @@ public class VacuumArm extends Subsystem
 	//Sets arm to ground position
 	public void groundArm()
 	{	
-		setLowerArmExtended(true);
-		setUpperArmExtended(false);
+		setLowerArmExtended(false);
+		setUpperArmExtended(true);
 	}
 	
 	//Sets arm to lower aiming position
@@ -70,8 +70,8 @@ public class VacuumArm extends Subsystem
 	//Sets arm to upper aiming position
 	public void scaleArm()
 	{
-		setLowerArmExtended(false);
-		setUpperArmExtended(true);
+		setLowerArmExtended(true);
+		setUpperArmExtended(false);
 	}
 	
 	//Function to simplify solenoid logic for lower piston
