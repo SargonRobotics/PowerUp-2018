@@ -17,6 +17,8 @@ public class Drive extends Subsystem
 		//Motor controller definitions
 		leftMotor = new Victor(RobotMap.MotorControllers.leftDrive);
 		rightMotor = new Victor(RobotMap.MotorControllers.rightDrive);
+		
+		leftMotor.setInverted(true);
 	
 		
 		//Drive controller definition
@@ -25,7 +27,7 @@ public class Drive extends Subsystem
 	
 	public void drive(double moveVal, double rotateVal)
 	{			
-		drive.arcadeDrive(moveVal, rotateVal);
+		drive.arcadeDrive(moveVal, -rotateVal);
 	}
 	
 	public void stop()

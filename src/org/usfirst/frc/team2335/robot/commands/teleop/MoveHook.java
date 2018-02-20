@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class MoveHook extends Command
 {
-	final double absoluteSpeed = 1;
+	final double absoluteSpeed = 0.6;
 	double speed = 0;
 	
     public MoveHook(boolean movingUp)

@@ -16,9 +16,9 @@ public class OperatorInterface
 		mainDrive = new Joystick(0);
 		coDrive = new Joystick(1);
 		
-		climbButton = new JoystickButton(coDrive, RobotMap.Controller.Buttons.climbButton);
-		hookUp = new JoystickButton(coDrive, RobotMap.Controller.Buttons.hookUp);
-		hookDown = new JoystickButton(coDrive, RobotMap.Controller.Buttons.hookDown);
+		climbButton = new JoystickButton(mainDrive, RobotMap.Controller.Buttons.climbButton);
+		hookUp = new JoystickButton(mainDrive, RobotMap.Controller.Buttons.hookUp);
+		hookDown = new JoystickButton(mainDrive, RobotMap.Controller.Buttons.hookDown);
 		
 		
 		//Commands
