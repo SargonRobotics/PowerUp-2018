@@ -1,13 +1,17 @@
-package org.usfirst.frc.team2335.robot.commands.teleop;
+package org.usfirst.frc.team2335.robot.commands;
 
 import org.usfirst.frc.team2335.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Climb extends Command
+public class MoveHook extends Command
 {
-    public Climb()
+	final double absoluteSpeed = 0.6;
+	double speed = 0;
+	
+    public MoveHook(boolean movingUp)
     {
+    	this.speed = movingUp ? absoluteSpeed : absoluteSpeed * -1;
         requires(Robot.climber);
     }
 
@@ -20,7 +24,7 @@ public class Climb extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute()
     {
-    	Robot.climber.climb();
+    	Robot.climber.moveHook(this.speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -32,7 +36,7 @@ public class Climb extends Command
     // Called once after isFinished returns true
     protected void end()
     {
-    	Robot.climber.stopClimb();
+    	Robot.climber.stopHook();
     }
 
     // Called when another command which requires one or more of the same

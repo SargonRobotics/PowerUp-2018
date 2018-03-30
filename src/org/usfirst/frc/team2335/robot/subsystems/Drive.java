@@ -2,6 +2,7 @@ package org.usfirst.frc.team2335.robot.subsystems;
 
 import org.usfirst.frc.team2335.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -12,6 +13,7 @@ public class Drive extends Subsystem
 	DifferentialDrive drive;
 	
 	//TODO: Add encoders
+	Encoder leftDrive, rightDrive;
 		
 	public Drive()
 	{
@@ -19,18 +21,18 @@ public class Drive extends Subsystem
 		leftMotor = new Victor(RobotMap.MotorControllers.leftDrive);
 		rightMotor = new Victor(RobotMap.MotorControllers.rightDrive);
 
-		//Inverts left motor
-		leftMotor.setInverted(true);
-
 		//Drive controller definition
 		drive = new DifferentialDrive(leftMotor, rightMotor);
+		
+		//Disables errors
+		drive.setSafetyEnabled(false);
 	}
 	
 	public void drive(double moveVal, double rotateVal)
 	{		
 		//Function that drives the robot
 		//Turning is inverted, so I'm inverting in the code
-		drive.arcadeDrive(moveVal, -rotateVal);
+		drive.arcadeDrive(-moveVal, -rotateVal);
 	}
 	
 	public void stop()

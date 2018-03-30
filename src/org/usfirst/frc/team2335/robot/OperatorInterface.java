@@ -1,8 +1,7 @@
 package org.usfirst.frc.team2335.robot;
 
-import org.usfirst.frc.team2335.robot.commands.ShootCube;
-import org.usfirst.frc.team2335.robot.commands.teleop.Climb;
-import org.usfirst.frc.team2335.robot.commands.teleop.MoveHook;
+import org.usfirst.frc.team2335.robot.commands.Climb;
+import org.usfirst.frc.team2335.robot.commands.MoveHook;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -21,22 +20,17 @@ public class OperatorInterface
 	public OperatorInterface()
 	{
 		mainDrive = new Joystick(0);
-		coDrive = new Joystick(1);
 		
 		//JoystickButton definitions
 		toggleVacuum = new JoystickButton(mainDrive, RobotMap.Controller.Buttons.vaccuumToggle);
-		pushCubeButton = new JoystickButton(mainDrive, RobotMap.Controller.Buttons.shoot);
 		aimLow = new JoystickButton(mainDrive, RobotMap.Controller.Buttons.armAimLow);
 		aimHigh = new JoystickButton(mainDrive, RobotMap.Controller.Buttons.armAimHigh);
 		
-		climbButton = new JoystickButton(coDrive, RobotMap.Controller.Buttons.climbButton);
-		hookUp = new JoystickButton(coDrive, RobotMap.Controller.Buttons.hookUp);
-		hookDown = new JoystickButton(coDrive, RobotMap.Controller.Buttons.hookDown);
+		climbButton = new JoystickButton(mainDrive, RobotMap.Controller.Buttons.climbButton);
+		hookUp = new JoystickButton(mainDrive, RobotMap.Controller.Buttons.hookUp);
+		hookDown = new JoystickButton(mainDrive, RobotMap.Controller.Buttons.hookDown);
 		
-		
-		//Linking buttons to commands
-		pushCubeButton.whenPressed(new ShootCube());
-		
+		//Linking buttons to commands		
 		climbButton.whileHeld(new Climb());
 		hookUp.whileHeld(new MoveHook(true));
 		hookDown.whileHeld(new MoveHook(false));

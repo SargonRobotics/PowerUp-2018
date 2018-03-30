@@ -18,10 +18,10 @@ public class RobotMap
 		public static class Buttons
 		{
 			//Climb Buttons
-			public static final int climbButton = 1, hookUp = 2, hookDown = 3;
+			public static final int climbButton = 2, hookUp = 5, hookDown = 6;
 			
 			//Arm Buttons
-			public static final int vaccuumToggle = 1, shoot = 2, armAimLow = 3, armAimHigh = 4;
+			public static final int vaccuumToggle = 1, armAimLow = 3, armAimHigh = 4;
 		}
 	}
 	
@@ -32,7 +32,7 @@ public class RobotMap
 		public static final int leftDrive = 0, rightDrive = 1;
 		
 		//Climb motors
-		public static final int hookMotor = 5, climbWinch = 4;
+		public static final int hookMotor = 3, climbWinch = 4;
 
 		//Vacuum port
 		public static final int vaccuumMotor = 2;

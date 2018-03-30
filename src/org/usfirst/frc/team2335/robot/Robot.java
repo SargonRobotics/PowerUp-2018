@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2335.robot;
 
+import org.usfirst.frc.team2335.robot.commands.Auto;
 import org.usfirst.frc.team2335.robot.commands.ResetShootingArm;
 import org.usfirst.frc.team2335.robot.subsystems.Climber;
 import org.usfirst.frc.team2335.robot.subsystems.Drive;
@@ -38,14 +39,20 @@ public class Robot extends TimedRobot
 		oi = new OperatorInterface(); //Initialize this last or you break everything
 		
 		vacuumState = false;
-		armState = 0;
+		armState = RobotMap.States.Arm.aimSwitch;
 		prevArmState = armState;
+		
+		chooser.addDefault("Auto", new Auto());
+		chooser.addObject("No Auto", null);
 		
 		//Adds auto commands
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		//Reset solenoids
 		SmartDashboard.putData("ResetPosition", new ResetShootingArm());
+		
+		//Vacuum indicator
+		SmartDashboard.putBoolean("Vacuum", vacuumState);
 	}
 
 	@Override
@@ -64,8 +71,6 @@ public class Robot extends TimedRobot
 	@Override
 	public void autonomousInit()
 	{
-		vacuumArm.groundArm();
-		
 		autonomousCommand = chooser.getSelected();
 
 		//Schedule the autonomous command (example)
@@ -97,11 +102,11 @@ public class Robot extends TimedRobot
 	public void teleopPeriodic()
 	{
 		//Gets axis values from the controller
-		yVal = oi.getAxis(RobotMap.Controller.Axes.xDrive, 1);
-		xVal = oi.getAxis(RobotMap.Controller.Axes.yDrive, 1);
+		yVal = oi.getAxis(RobotMap.Controller.Axes.yDrive, 1);
+		xVal = oi.getAxis(RobotMap.Controller.Axes.xDrive, 0.75);
 			
 		//Drives robot (woah didn't know that one)
-		drive.drive(yVal, -xVal);
+		drive.drive(yVal, xVal);
 		
 		//Changes vacuum state once the vacuum button is pressed
 		vacuumState = oi.getButtonPressed(0, RobotMap.Controller.Buttons.vaccuumToggle) ? !vacuumState : vacuumState;
@@ -150,6 +155,9 @@ public class Robot extends TimedRobot
 		
 		//Set previous arm state
 		prevArmState = armState;
+		
+		//Update vacuum indicator
+		SmartDashboard.putBoolean("Vacuum", vacuumState);
 						
 		Scheduler.getInstance().run();
 	}

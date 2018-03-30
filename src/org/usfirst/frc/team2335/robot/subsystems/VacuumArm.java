@@ -77,8 +77,8 @@ public class VacuumArm extends Subsystem
 	//Function to simplify solenoid logic for lower piston
 	private void setLowerArmExtended(boolean isExtended)
 	{
-		lowerAimExtend.set(isExtended);
-		lowerAimRetract.set(!isExtended);
+		lowerAimExtend.set(!isExtended);
+		lowerAimRetract.set(isExtended);
 	}
 	
 	//Function to simplify solenoid logic for upper piston
