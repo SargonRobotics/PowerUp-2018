@@ -13,7 +13,7 @@ public class Drive extends Subsystem
 	DifferentialDrive drive;
 	
 	//TODO: Add encoders
-	Encoder leftDrive, rightDrive;
+	Encoder rightEncoder;
 		
 	public Drive()
 	{
@@ -26,6 +26,9 @@ public class Drive extends Subsystem
 		
 		//Disables errors
 		drive.setSafetyEnabled(false);
+		
+		//Encoders
+		rightEncoder = new Encoder(RobotMap.Sensors.rightEncoderA, RobotMap.Sensors.rightEncoderB);
 	}
 	
 	public void drive(double moveVal, double rotateVal)
@@ -38,6 +41,11 @@ public class Drive extends Subsystem
 	public void stop()
 	{
 		drive.stopMotor();
+	}
+	
+	public int getEncoderVal()
+	{
+		return rightEncoder.get();
 	}
 	
     public void initDefaultCommand()

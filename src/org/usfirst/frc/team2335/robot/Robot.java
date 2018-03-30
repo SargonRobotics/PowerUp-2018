@@ -158,6 +158,9 @@ public class Robot extends TimedRobot
 		
 		//Update vacuum indicator
 		SmartDashboard.putBoolean("Vacuum", vacuumState);
+		
+		//Encoder counter
+		SmartDashboard.putNumber("Encoder", drive.getEncoderVal());
 						
 		Scheduler.getInstance().run();
 	}
