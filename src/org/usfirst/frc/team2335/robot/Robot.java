@@ -1,11 +1,17 @@
 package org.usfirst.frc.team2335.robot;
 
-import org.usfirst.frc.team2335.robot.commands.Auto;
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
+import org.usfirst.frc.team2335.robot.auto.AutoDrive;
 import org.usfirst.frc.team2335.robot.commands.ResetShootingArm;
 import org.usfirst.frc.team2335.robot.subsystems.Climber;
 import org.usfirst.frc.team2335.robot.subsystems.Drive;
 import org.usfirst.frc.team2335.robot.subsystems.VacuumArm;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -37,13 +43,17 @@ public class Robot extends TimedRobot
 		drive = new Drive();
 		vacuumArm = new VacuumArm();
 		oi = new OperatorInterface(); //Initialize this last or you break everything
-		
+
+		//Starts camera
+		initCamera();
+
 		vacuumState = false;
 		armState = RobotMap.States.Arm.aimSwitch;
 		prevArmState = armState;
 		
-		chooser.addDefault("Auto", new Auto());
+		chooser.addDefault("Auto", new AutoDrive());
 		chooser.addObject("No Auto", null);
+
 		
 		//Adds auto commands
 		SmartDashboard.putData("Auto mode", chooser);
@@ -53,6 +63,29 @@ public class Robot extends TimedRobot
 		
 		//Vacuum indicator
 		SmartDashboard.putBoolean("Vacuum", vacuumState);
+	}
+	
+	private void initCamera()
+	{
+		//Starts camera thread
+		new Thread(() ->
+		{
+			UsbCamera cam = CameraServer.getInstance().startAutomaticCapture();
+			cam.setResolution(RobotMap.Camera.width, RobotMap.Camera.height);
+			
+			CvSink sink = CameraServer.getInstance().getVideo();
+			CvSource outputStream = CameraServer.getInstance().putVideo("Obsergaytion_01", RobotMap.Camera.width, RobotMap.Camera.height);
+			
+			Mat vidSource = new Mat();
+			Mat output = new Mat();
+			
+			while(!Thread.interrupted())
+			{
+				sink.grabFrame(vidSource);
+				Imgproc.cvtColor(vidSource, output, Imgproc.COLOR_BGR2RGB);
+				outputStream.putFrame(output);
+			}
+		});
 	}
 
 	@Override
