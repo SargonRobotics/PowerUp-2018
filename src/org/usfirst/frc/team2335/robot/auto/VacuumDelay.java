@@ -1,28 +1,27 @@
-package org.usfirst.frc.team2335.robot.commands;
+package org.usfirst.frc.team2335.robot.auto;
 
 import org.usfirst.frc.team2335.robot.Robot;
-import org.usfirst.frc.team2335.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ResetShootingArm extends Command
+public class VacuumDelay extends Command
 {
-    public ResetShootingArm()
+    public VacuumDelay()
     {
-        requires(Robot.vacuumArm);
-        setTimeout(0.5);
+    	requires(Robot.vacuumArm);
+        setTimeout(1.5);
     }
 
     // Called just before this Command runs the first time
     protected void initialize()
     {
-    	Robot.armState = RobotMap.States.Arm.aimScale;
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute()
     {
-    	
+    	Robot.vacuumArm.startVaccuum();
     }
 
     // Make this return true when this Command no longer needs to run execute()
